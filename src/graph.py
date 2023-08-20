@@ -11,7 +11,7 @@ class Graph:
 
     def __init__(self, data):
         self.n = int(data.n)  # number of nodes of the graph
-        self.alpha = data.alpha
+        self.delta = data.delta # delta parameter
         self.coordX = data.coordX  # X coordinates of the points
         self.coordY = data.coordY  # Y coordinates of the points
         self.dist = np.zeros([self.n + 1, self.n + 1])
