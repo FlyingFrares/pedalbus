@@ -23,7 +23,7 @@ Nella cartella [test](test) vanno inseriti i file di prova o comunque che non so
 ## TODO
 
 - [x] Scrivere un generatore pseudo-causale di istanze ✅ 2023-08-20
-- [ ] Formalizzare il problema tramite un modello (pseudo)matematico
+- [x] Formalizzare il problema tramite un modello (pseudo)matematico ✅ 2023-09-03
 - [ ] Scegliere almeno un approccio risolutivo per ogni componente del gruppo, tra quelli esaminati nel corso
 - [ ] Applicarlo alla soluzione del problema selezionato sperimentandolo su almeno un’istanza
 
