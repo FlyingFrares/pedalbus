@@ -1,81 +1,121 @@
-# A class to represent a disjoint set
-class DisjointSet:
-	parent = {}
-
-	# perform MakeSet operation
-	def makeSet(self, n):
-		# create `n` disjoint sets (one for each vertex)
-		for i in range(n):
-			self.parent[i] = i
-
-	# Find the root of the set in which element `k` belongs
-	def find(self, k):
-		# if `k` is root
-		if self.parent[k] == k:
-			return k
-
-		# recur for the parent until we find the root
-		return self.find(self.parent[k])
-
-	# Perform Union of two subsets
-	def union(self, a, b):
-		# find the root of the sets in which elements `x` and `y` belongs
-		x = self.find(a)
-		y = self.find(b)
-
-		self.parent[x] = y
+# Python program for Kruskal's algorithm to find
+# Minimum Spanning Tree of a given connected,
+# undirected and weighted graph
 
 
-# Function to construct MST using Kruskal’s algorithm
-def runKruskalAlgorithm(edges, n):
+# Class to represent a graph
+class Graph:
 
-	# stores the edges present in MST
-	MST = []
+	def __init__(self, vertices):
+		self.V = vertices
+		self.graph = []
 
-	# Initialize `DisjointSet` class.
-	# Create a singleton set for each element of the universe.
-	ds = DisjointSet()
-	ds.makeSet(n)
+	# Function to add an edge to graph
+	def addEdge(self, u, v, w):
+		self.graph.append([u, v, w])
 
-	index = 0
+	# A utility function to find set of an element i
+	# (truly uses path compression technique)
+	def find(self, parent, i):
+		if parent[i] != i:
 
-	# sort edges by increasing weight
-	edges.sort(key=lambda x: x[2])
+			# Reassignment of node's parent
+			# to root node as
+			# path compression requires
+			parent[i] = self.find(parent, parent[i])
+		return parent[i]
 
-	# MST contains exactly `V-1` edges
-	while len(MST) != n - 1:
+	# A function that does union of two sets of x and y
+	# (uses union by rank)
+	def union(self, parent, rank, x, y):
 
-		# consider the next edge with minimum weight from the graph
-		(src, dest, weight) = edges[index]
-		index = index + 1
+		# Attach smaller rank tree under root of
+		# high rank tree (Union by Rank)
+		if rank[x] < rank[y]:
+			parent[x] = y
+		elif rank[x] > rank[y]:
+			parent[y] = x
 
-		# find the root of the sets to which two endpoints
-		# vertices of the next edge belongs
-		x = ds.find(src)
-		y = ds.find(dest)
+		# If ranks are same, then make one as root
+		# and increment its rank by one
+		else:
+			parent[y] = x
+			rank[x] += 1
 
-		# if both endpoints have different parents, they belong to
-		# different connected components and can be included in MST
-		if x != y:
-			MST.append((src, dest, weight))
-			ds.union(x, y)
+	# The main function to construct MST
+	# using Kruskal's algorithm
+	def KruskalMST(self):
 
-	return MST
+		# This will store the resultant MST
+		result = []
+
+		# An index variable, used for sorted edges
+		i = 0
+
+		# An index variable, used for result[]
+		e = 0
+
+		# Sort all the edges in
+		# non-decreasing order of their
+		# weight
+		self.graph = sorted(self.graph,
+							key=lambda item: item[2])
+
+		parent = []
+		rank = []
+
+		# Create V subsets with single elements
+		for node in range(self.V):
+			parent.append(node)
+			rank.append(0)
+
+		# Number of edges to be taken is less than to V-1
+		while e < self.V - 1:
+
+			# Pick the smallest edge and increment
+			# the index for next iteration
+			u, v, w = self.graph[i]
+			i = i + 1
+			x = self.find(parent, u)
+			y = self.find(parent, v)
+
+			# If including this edge doesn't
+			# cause cycle, then include it in result
+			# and increment the index of result
+			# for next edge
+			if x != y:
+				e = e + 1
+				result.append([u, v, w])
+				self.union(parent, rank, x, y)
+			# Else discard the edge
+
+		minimumCost = 0
+		print("Edges in the constructed MST")
+		for u, v, weight in result:
+			minimumCost += weight
+			print("%d -- %d == %d" % (u, v, weight))
+		print("Minimum Spanning Tree", minimumCost)
 
 
+# Driver code
 if __name__ == '__main__':
+    g = Graph(9)
+    g.addEdge(7, 6, 1)
+    g.addEdge(8, 2, 2)
+    g.addEdge(6, 5, 2)
+    g.addEdge(0, 1, 4)
+    g.addEdge(2, 5, 4)
+    g.addEdge(8, 6, 6)
+    g.addEdge(2, 3, 7)
+    g.addEdge(7, 8, 7)
+    g.addEdge(0, 7, 8)
+    g.addEdge(1, 2, 8)
+    g.addEdge(3, 4, 9)
+    g.addEdge(5, 4, 10)
+    g.addEdge(1, 7, 11)
+    g.addEdge(3, 5, 14)
 
-	# (u, v, w) triplet represent undirected edge from
-	# vertex `u` to vertex `v` having weight `w`
-	edges = [
-		(0, 1, 7), (1, 2, 8), (0, 3, 5), (1, 3, 9), (1, 4, 7), (2, 4, 5),
-		(3, 4, 15), (3, 5, 6), (4, 5, 8), (4, 6, 9), (5, 6, 11)
-	]
 
-	# total number of nodes in the graph (labelled from 0 to 6)
-	n = 7
 
-	# construct graph
-	e = runKruskalAlgorithm(edges, n)
-
-	print(e)
+	# Function call
+    g.KruskalMST()
