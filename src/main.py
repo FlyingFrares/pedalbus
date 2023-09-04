@@ -10,6 +10,4 @@ data = data_parser.get_data(file_path)
 
 gr = graph.Graph(data)
 
-t2 = tuple(map(lambda x: isinstance(x, float) and round(x, 2) or x, gr.get_root_vector())) # round to 2 decimal places the tuple
-
-print(t2)
+k = gr.kruskal()
