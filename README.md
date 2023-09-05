@@ -9,7 +9,8 @@ Determinare il numero **minimo** di percorsi che partono dalla casa di un bambin
 ## Istruzioni per l'uso
 
 > [!IMPORTANT]
-> - Assicurarsi di stare lavorando sempre alla versione corrente del codice 
+> - Assicurarsi di stare lavorando sempre alla versione corrente del codice
+> - Lavorare sempre su una branch diversa da `main` per evitare di pasticciare il codice (Da Github Desktop è abbastanza facile crearsene una)
 > - Installare nel proprio ambiente virtuale le dipendenze attraverso il comando
 > ```python
 > pip install -r requirements.txt
