@@ -1,7 +1,7 @@
 param n := 250
 ;
 
-param alpha := 1.38
+param delta := 1.5
 ;
 
 param coordX [*] :=

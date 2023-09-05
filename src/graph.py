@@ -143,7 +143,7 @@ class Graph:
         for u, v, weight in result:
             minimumcost += weight
             print("%d -- %d == %.1f" % (u, v, weight))
-        print("Minimum Spanning Tree", minimumcost)
+        print("Minimum Spanning Tree", round(minimumcost, 1))
 
 
 def euclidean_distance(p1_x, p2_x, p1_y, p2_y):
