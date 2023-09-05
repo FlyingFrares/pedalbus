@@ -1,28 +1,18 @@
+# TODO: Rendi il plot adattivo al codice sorgente
+
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# Creazione di un grafo
+# Definisci i nodi e gli archi
+edges = [(0, 10), (0, 8), (1, 5), (2, 9), (4, 8), (2, 4), (1, 3), (0, 3), (5, 7), (5, 6)]
+
+# Crea un grafico
 G = nx.Graph()
 
-# Aggiungi i collegamenti e le rispettive distanze
-edges = [
-    (0, 10, 5.0),
-    (0, 8, 6.4),
-    (1, 5, 7.6),
-    (2, 9, 7.6),
-    (4, 8, 9.2),
-    (2, 4, 12.2),
-    (1, 3, 12.4),
-    (0, 3, 15.0),
-    (5, 7, 26.2),
-    (5, 6, 27.8),
-]
+# Aggiungi nodi e archi al grafico
+G.add_edges_from(edges)
 
-for edge in edges:
-    G.add_edge(edge[0], edge[1], weight=edge[2])
-
-# Disegna il grafo
-pos = nx.spring_layout(G)  # Layout del grafo
-labels = nx.get_edge_attributes(G, 'weight')
-nx.draw(G, pos, with_labels=True, node_size=500, node_color='lightblue')
+# Disegna il grafico
+pos = nx.spring_layout(G)  # Calcola le posizioni dei nodi
+nx.draw(G, pos, with_labels=True, node_size=500, node_color='skyblue', font_size=10, font_color='black')
 plt.show()
