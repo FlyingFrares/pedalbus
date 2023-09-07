@@ -46,7 +46,7 @@ class Graph:
     def get_ordered_vector(self, nodes):
         """
         Get an ordered vector based on the distance with the root node.
-        The element 0 of the vector, therefore, is the nearest node to the root, while the last one will be the farthest
+        The element 0 of the vector, therefore, is the nearest node to the root, while the last one will be farthest
         :param nodes: the nodes that you want to compare
         :return: returns an ordered list based on the distance with the root node.
         """
