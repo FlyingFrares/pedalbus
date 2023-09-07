@@ -14,8 +14,8 @@ gr = graph.Graph(data)
 
 print("Greedy search:")
 
-leaves, edges = greedy.min_distance(gr)
+leaves, edges = greedy.greedy_algorithm(gr)
 
-print(f"Il numero minimo di percorsi è {leaves}\n")
+print(f"Il numero minimo di percorsi trovato è {leaves}\n")
 
 plot.plot_graph(edges, leaves, gr.delta, test_file)

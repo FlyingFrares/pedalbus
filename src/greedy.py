@@ -31,11 +31,11 @@ def find_next(graph, previous_node, not_visited, path_length):
     return best_node
 
 
-def min_distance(graph):
+def greedy_algorithm(graph):
     """
-    It executes an iteration of the algorithm and returns the score and the edges associated to it.
+    this function implements the greedy algorithm
     :param graph: the graph on which you want to apply the algorithm
-    :return: the edges of this solution
+    :return: the edges that form the paths and the number of paths
     """
     previous = ROOT
     curr_path_length = 0

@@ -15,10 +15,10 @@ def plot_graph(edges, leaves, delta, filename):
     else:
         nx.draw(G, pos, with_labels=False, node_size=50, node_color='skyblue')
 
+    """
     # save the graph
-    # file_path = (".." + os.path.sep + "images" + os.path.sep + filename + "_" + str(delta) + ".png")
-    # plt.savefig(file_path, format="png", dpi=600)
-
+    file_path = (".." + os.path.sep + "images" + os.path.sep + filename + "_" + str(delta) + ".png")
+    plt.savefig(file_path, format="png", dpi=600)
+    """
     # show the graph
-    # plt.show()
-
+    plt.show()
