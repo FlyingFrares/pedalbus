@@ -4,7 +4,7 @@ import graph
 import greedy
 import plot
 
-test_file = "pedalbus_300"  # edit this if you do not want to pass a command line arg.
+test_file = "pedalbus_10"  # edit this if you do not want to pass a command line arg.
 
 file_path = ".." + os.path.sep + "instances" + os.path.sep + test_file + ".dat"
 
