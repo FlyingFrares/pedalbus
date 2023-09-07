@@ -1,2 +1,4 @@
-amply
-numpy
+amply~=0.1.6
+numpy~=1.26.0b1
+networkx~=3.1
+matplotlib~=3.8.0rc1
