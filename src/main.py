@@ -1,4 +1,4 @@
-import data_parser
+import parser
 import os
 import graph
 import greedy
@@ -8,7 +8,7 @@ test_file = "pedalbus_10"  # edit this if you do not want to pass a command line
 
 file_path = ".." + os.path.sep + "instances" + os.path.sep + test_file + ".dat"
 
-data = data_parser.get_data(file_path)
+data = parser.get_data(file_path)
 
 gr = graph.Graph(data)
 
