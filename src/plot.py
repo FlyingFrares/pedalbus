@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-def plot_graph(edges, leaves, delta, filename):
+def plot_graph(leaves, edges, delta, filename):
     plt.title(f"nodi: {len(edges)}; delta: {delta}; foglie: {leaves}")
     G = nx.Graph()
     G.add_edges_from(edges)

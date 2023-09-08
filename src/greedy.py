@@ -35,13 +35,14 @@ def greedy_algorithm(graph):
     """
     this function implements the greedy algorithm
     :param graph: the graph on which you want to apply the algorithm
-    :return: the edges that form the paths and the number of paths
+    :return: the edges that form the solution path, the number of leaves and the total length of the path
     """
     previous = ROOT
     curr_path_length = 0
     nodes_not_visited = set(range(1, graph.n))
     edges = []
     leaves_counter = 1  # I initialize this to one to add the last one
+    total_length = 0
 
     while nodes_not_visited:  # while nodes_not_visited is not empty
         next_node = find_next(graph, previous, nodes_not_visited, curr_path_length)
@@ -52,8 +53,9 @@ def greedy_algorithm(graph):
             previous = next_node
             curr_path_length += graph.get_edge_distance(new_edge)
         else:  # you cannot add other nodes to the current path, so I create a new path starting from the root
+            total_length += curr_path_length
             curr_path_length = 0
             previous = ROOT
             leaves_counter += 1
-
-    return leaves_counter, edges
+    total_length += curr_path_length
+    return leaves_counter, edges, total_length
