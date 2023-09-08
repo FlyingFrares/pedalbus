@@ -4,7 +4,7 @@ import os
 
 
 def plot_graph(leaves, edges, delta, filename):
-    plt.title(f"nodi: {len(edges)}; delta: {delta}; foglie: {leaves}")
+    plt.title(f"{filename}; delta: {delta}; foglie: {leaves}")
     G = nx.Graph()
     G.add_edges_from(edges)
     pos = nx.spring_layout(G, iterations=500)

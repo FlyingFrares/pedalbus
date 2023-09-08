@@ -31,7 +31,7 @@ def find_next(graph, previous_node, not_visited, path_length):
     return best_node
 
 
-def greedy_algorithm(graph):
+def run_algorithm(graph):
     """
     this function implements the greedy algorithm
     :param graph: the graph on which you want to apply the algorithm

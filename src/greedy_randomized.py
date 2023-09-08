@@ -46,7 +46,7 @@ def find_next(seed, graph, previous_node, not_visited, path_length):
         return -1
 
 
-def greedy_randomized(graph, iterations, seed):
+def run_algorithm(graph, iterations, seed):
     """
     It executes an iteration of the algorithm and returns the score and the edges associated to it
     :param graph: the graph on which you want to apply the algorithm
