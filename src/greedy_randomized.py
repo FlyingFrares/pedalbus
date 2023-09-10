@@ -1,3 +1,7 @@
+"""
+file that contains the implementation of the greedy randomized algorithm
+"""
+
 import random
 
 ROOT = 0
@@ -46,49 +50,36 @@ def find_next(seed, graph, previous_node, not_visited, path_length):
         return -1
 
 
-def run_algorithm(graph, iterations, seed):
+def run_algorithm(graph, seed):
     """
-    It executes an iteration of the algorithm and returns the score and the edges associated to it
+    It executes an iteration of the greedy randomized algorithm
     :param graph: the graph on which you want to apply the algorithm
-    :param iterations: the number of iterations that you want to perform
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
     :return: the score, the edges that form the solution path, the number of leaves and the total length of the path
     """
 
-    best_score = float("inf")
-    best_leaves = float("inf")
-    best_edges = []
-    best_length = float("inf")
+    previous = ROOT
+    curr_path_length = 0
+    nodes_not_visited = set(range(1, graph.n))
+    edges = []
+    leaves_counter = 1  # I initialize this to one to add the last one
+    total_length = 0
 
-    for i in range(iterations):
+    while nodes_not_visited:  # while nodes_not_visited is not empty
+        next_node = find_next(seed, graph, previous, nodes_not_visited, curr_path_length)
+        if next_node != -1:  # I found a feasible node that can be added to the current path
+            nodes_not_visited.remove(next_node)
+            new_edge = [previous, next_node]
+            edges.append(new_edge)
+            previous = next_node
+            curr_path_length += graph.get_edge_distance(new_edge)
+        else:  # you cannot add other nodes to the current path, so I create a new path starting from the root
+            total_length += curr_path_length
+            curr_path_length = 0
+            previous = ROOT
+            leaves_counter += 1
 
-        previous = ROOT
-        curr_path_length = 0
-        nodes_not_visited = set(range(1, graph.n))
-        edges = []
-        leaves_counter = 1  # I initialize this to one to add the last one
-        total_length = 0
+    total_length += curr_path_length
+    score = str(leaves_counter) + "." + str(total_length).replace(".", "")
 
-        while nodes_not_visited:  # while nodes_not_visited is not empty
-            next_node = find_next(seed, graph, previous, nodes_not_visited, curr_path_length)
-            if next_node != -1:  # I found a feasible node that can be added to the current path
-                nodes_not_visited.remove(next_node)
-                new_edge = [previous, next_node]
-                edges.append(new_edge)
-                previous = next_node
-                curr_path_length += graph.get_edge_distance(new_edge)
-            else:  # you cannot add other nodes to the current path, so I create a new path starting from the root
-                total_length += curr_path_length
-                curr_path_length = 0
-                previous = ROOT
-                leaves_counter += 1
-
-        total_length += curr_path_length
-        score = str(leaves_counter) + "." + str(total_length).replace(".", "")
-        if float(score) < best_score:
-            best_score = float(score)
-            best_leaves = leaves_counter
-            best_edges = edges.copy()
-            best_length = total_length
-
-    return float(best_score), best_leaves, best_edges, best_length
+    return float(score), leaves_counter, edges, total_length
