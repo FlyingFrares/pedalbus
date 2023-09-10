@@ -6,7 +6,7 @@ import os
 import graph
 import greedy
 import plot
-import local_search
+import best_greedy_randomized
 import grasp
 
 test_file = "pedibus_10"  # edit this if you do not want to pass a command line arg.
@@ -24,11 +24,11 @@ greedy_leaves, greedy_edges, greedy_length = greedy.run_algorithm(gr)
 print(f"numero di percorsi: {greedy_leaves}, lunghezza: {greedy_length}\n")
 
 
-print("Local search")
+print("Greedy randomized")
 seed = 1.5
 iterations = 1000
 start_time = time.time()
-ls_score, ls_leaves, ls_edges, ls_length = local_search.run_algorithm(gr, iterations, seed)
+ls_score, ls_leaves, ls_edges, ls_length = best_greedy_randomized.run_algorithm(gr, iterations, seed)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"numero di percorsi: {ls_leaves}, lunghezza: {ls_length}\n")
