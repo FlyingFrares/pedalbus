@@ -25,7 +25,7 @@ print(f"numero di percorsi: {greedy_leaves}, lunghezza: {greedy_length}\n")
 seed = 1.5
 iterations = 1000
 
-print("Basic GRASP")
+print("Almost GRASP")
 start_time = time.time()
 bg_score, bg_leaves, bg_edges, bg_length = grasp.basic_grasp(gr, iterations, seed)
 end_time = time.time()
