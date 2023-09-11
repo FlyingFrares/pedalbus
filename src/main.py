@@ -35,13 +35,9 @@ print(f"Tempo di esecuzione: {elapsed_time} secondi")
 
 
 # TODO: GRASP
-"""
 print("GRASP")
-seed = 1.5
-iterations = 1000
-grasp_score, grasp_leaves, grasp_edges, grasp_length = grasp.graspframework(gr, iterations, seed)
+grasp_score, grasp_leaves, grasp_edges, grasp_length = grasp.full_grasp(gr, iterations, seed)
 print(f"numero di percorsi: {grasp_leaves}, lunghezza: {grasp_length}\n")
-"""
 
 """
 plot.plot_graph(greedy_leaves, greedy_edges, gr.delta, (test_file + "_greedy"))
