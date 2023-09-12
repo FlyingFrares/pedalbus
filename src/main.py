@@ -8,7 +8,7 @@ import grasp
 
 
 # Configuration parameters
-TEST_FILE = "pedibus_10"  # file su cui eseguire il test
+TEST_FILE = "pedalbus_10"  # file su cui eseguire il test
 SEED_FOR_SMALL_INSTANCES = 2  # seed per le istanze con N < 30
 SEED_FOR_BIG_INSTANCES = 1.25  # seed per le istanze con N >= 30
 ITERATIONS = 1000  # numero di iterazioni per GRASP

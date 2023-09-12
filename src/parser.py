@@ -1,5 +1,6 @@
 from amply import Amply
 
+
 def get_data(file_path):
     """
     Get the data contained in the Ampl input file
