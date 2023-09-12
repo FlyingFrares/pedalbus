@@ -6,7 +6,17 @@ import greedy
 import plot
 import grasp
 
-test_file = "pedibus_10"  # edit this if you do not want to pass a command line arg.
+
+# Configuration parameters
+TEST_FILE = "pedibus_10"  # file su cui eseguire il test
+SEED_FOR_SMALL_INSTANCES = 2  # seed per le istanze con N < 30
+SEED_FOR_BIG_INSTANCES = 1.25  # seed per le istanze con N >= 30
+ITERATIONS = 1000  # numero di iterazioni per GRASP
+LS_ITERATIONS = 100  # numero di iterazioni per la local search
+
+
+# Main
+test_file = TEST_FILE
 
 file_path = ".." + os.path.sep + "instances" + os.path.sep + test_file + ".dat"
 
@@ -22,11 +32,11 @@ print(f"numero di percorsi: {greedy_leaves}, lunghezza: {greedy_length}\n")
 plot.plot_graph(greedy_leaves, greedy_edges, gr.delta, (test_file + "_greedy"))
 
 if gr.n < 30:
-    seed = 2
-    iterations = 1000
+    seed = SEED_FOR_SMALL_INSTANCES
+    iterations = ITERATIONS
 else:
-    seed = 1.25
-    iterations = 1000
+    seed = SEED_FOR_BIG_INSTANCES
+    iterations = ITERATIONS
 
 print("Almost GRASP")
 start_time = time.time()
@@ -37,7 +47,7 @@ print(f"numero di percorsi: {bg_leaves}, lunghezza: {bg_length}")
 print(f"Tempo di esecuzione: {elapsed_time} secondi\n")
 plot.plot_graph(bg_leaves, bg_edges, gr.delta, (test_file + "_almost_grasp"))
 
-ls_iterations = 100
+ls_iterations = LS_ITERATIONS
 
 print("GRASP")
 start_time = time.time()
