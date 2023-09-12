@@ -25,8 +25,8 @@ Nella cartella [test](test) vanno inseriti i file di prova o comunque che non so
 
 - [x] Scrivere un generatore pseudo-causale di istanze ✅ 2023-08-20
 - [x] Formalizzare il problema tramite un modello (pseudo)matematico ✅ 2023-09-03
-- [ ] Scegliere almeno un approccio risolutivo per ogni componente del gruppo, tra quelli esaminati nel corso
-- [ ] Applicarlo alla soluzione del problema selezionato sperimentandolo su almeno un’istanza
+- [x] Scegliere almeno un approccio risolutivo per ogni componente del gruppo, tra quelli esaminati nel corso ✅ 2023-09-11
+- [x] Applicarlo alla soluzione del problema selezionato sperimentandolo su almeno un’istanza ✅ 2023-09-12
 
 ## Authors
 
