@@ -1,7 +1,3 @@
-# TODO: individuare un valore di seed adatto
-# TODO: individuare un valore di iterations adatto
-# TODO: individuare un valore di ls_iterations adatto
-
 import parser
 import time
 import os
@@ -25,8 +21,12 @@ greedy_leaves, greedy_edges, greedy_length = greedy.run_algorithm(gr)
 print(f"numero di percorsi: {greedy_leaves}, lunghezza: {greedy_length}\n")
 plot.plot_graph(greedy_leaves, greedy_edges, gr.delta, (test_file + "_greedy"))
 
-seed = 1.5
-iterations = 100
+if gr.n < 30:
+    seed = 2
+    iterations = 1000
+else:
+    seed = 1.25
+    iterations = 1000
 
 print("Almost GRASP")
 start_time = time.time()
@@ -37,7 +37,7 @@ print(f"numero di percorsi: {bg_leaves}, lunghezza: {bg_length}")
 print(f"Tempo di esecuzione: {elapsed_time} secondi\n")
 plot.plot_graph(bg_leaves, bg_edges, gr.delta, (test_file + "_almost_grasp"))
 
-ls_iterations = 1000
+ls_iterations = 100
 
 print("GRASP")
 start_time = time.time()
@@ -47,4 +47,3 @@ elapsed_time = end_time - start_time
 print(f"numero di percorsi: {grasp_leaves}, lunghezza: {grasp_length}")
 print(f"Tempo di esecuzione: {elapsed_time} secondi\n")
 plot.plot_graph(grasp_leaves, grasp_edges, seed, (test_file + "_grasp"))
-
