@@ -42,6 +42,7 @@ def full_grasp(graph, iterations, seed, ls_iterations):
     :param graph: the object that contains the information about the graph
     :param iterations: the number of iterations that you want to perform
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
+    :param ls_iterations: the number of iterations that you want to perform for the local search phase
     :return: the best score, the edges that form the best solution path found,
              the best number of leaves and the total length of the best path
     """
