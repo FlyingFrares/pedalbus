@@ -33,11 +33,7 @@ def run_algorithm(graph, initial_leaves, initial_edges, initial_length, iteratio
 
         # Verifica se la nuova soluzione è migliore di quella corrente
         if new_leaves <= best_leaves:
-            if new_leaves < best_leaves:
-                best_leaves = new_leaves
-                best_edges = copy.deepcopy(new_edges)
-                best_length = new_length
-            elif new_length < best_length:
+            if new_leaves < best_leaves or new_length < best_length:
                 best_leaves = new_leaves
                 best_edges = copy.deepcopy(new_edges)
                 best_length = new_length

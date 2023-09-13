@@ -27,11 +27,7 @@ def basic_grasp(graph, iterations, seed):
     for i in range(iterations):
         leaves, edges, length = greedy_randomized.run_algorithm(graph, seed)
         if leaves <= best_leaves:
-            if leaves < best_leaves:
-                best_leaves = leaves
-                best_edges = copy.deepcopy(edges)
-                best_length = length
-            elif length < best_length:
+            if leaves < best_leaves or length < best_length:
                 best_leaves = leaves
                 best_edges = copy.deepcopy(edges)
                 best_length = length
@@ -65,11 +61,7 @@ def full_grasp(graph, iterations, seed, ls_iterations):
 
         # Update the best solution if an improvement is found
         if ls_leaves <= best_leaves:
-            if ls_leaves < best_leaves:
-                best_leaves = ls_leaves
-                best_edges = copy.deepcopy(ls_edges)
-                best_length = ls_length
-            elif ls_length < best_length:
+            if ls_leaves < best_leaves or ls_length < best_length:
                 best_leaves = ls_leaves
                 best_edges = copy.deepcopy(ls_edges)
                 best_length = ls_length
