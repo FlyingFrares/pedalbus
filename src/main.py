@@ -40,7 +40,7 @@ else:
 
 print("Almost GRASP")
 start_time = time.time()
-bg_score, bg_leaves, bg_edges, bg_length = grasp.basic_grasp(gr, iterations, seed)
+bg_leaves, bg_edges, bg_length = grasp.basic_grasp(gr, iterations, seed)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"numero di percorsi: {bg_leaves}, lunghezza: {bg_length}")
@@ -51,7 +51,7 @@ ls_iterations = LS_ITERATIONS
 
 print("GRASP")
 start_time = time.time()
-grasp_score, grasp_leaves, grasp_edges, grasp_length = grasp.full_grasp(gr, iterations, seed, ls_iterations)
+grasp_leaves, grasp_edges, grasp_length = grasp.full_grasp(gr, iterations, seed, ls_iterations)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"numero di percorsi: {grasp_leaves}, lunghezza: {grasp_length}")
