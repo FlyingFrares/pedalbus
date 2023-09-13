@@ -8,11 +8,11 @@ import grasp
 
 
 # Configuration parameters
-TEST_FILE = "pedalbus_10"  # file su cui eseguire il test
+TEST_FILE = "pedalbus_100"  # file su cui eseguire il test
 SEED_FOR_SMALL_INSTANCES = 2  # seed per le istanze con N < 30
 SEED_FOR_BIG_INSTANCES = 1.25  # seed per le istanze con N >= 30
 ITERATIONS = 1000  # numero di iterazioni per GRASP
-LS_ITERATIONS = 100  # numero di iterazioni per la local search
+LS_ITERATIONS = 1000  # numero di iterazioni per la local search
 
 
 # Main
@@ -45,7 +45,7 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"numero di percorsi: {bg_leaves}, lunghezza: {bg_length}")
 print(f"Tempo di esecuzione: {elapsed_time} secondi\n")
-plot.plot_graph(bg_leaves, bg_edges, gr.delta, (test_file + "_almost_grasp"))
+plot.plot_graph(bg_leaves, bg_edges, seed, (test_file + "_almost_grasp"))
 
 ls_iterations = LS_ITERATIONS
 
