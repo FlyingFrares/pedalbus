@@ -16,24 +16,27 @@ def basic_grasp(graph, iterations, seed):
     :param graph: the object that contains the information about the graph
     :param iterations: the number of iterations that you want to perform
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
-    :return: the best score, the edges that form the best solution path found,
+    :return: the edges that form the best solution path found,
              the best number of leaves and the total length of the best path
     """
 
-    best_score = float("inf")
     best_leaves = float("inf")
     best_edges = []
     best_length = float("inf")
 
     for i in range(iterations):
-        score, leaves, edges, length = greedy_randomized.run_algorithm(graph, seed)
-        if float(score) < best_score:
-            best_score = float(score)
-            best_leaves = leaves
-            best_edges = copy.deepcopy(edges)
-            best_length = length
+        leaves, edges, length = greedy_randomized.run_algorithm(graph, seed)
+        if leaves <= best_leaves:
+            if leaves < best_leaves:
+                best_leaves = leaves
+                best_edges = copy.deepcopy(edges)
+                best_length = length
+            elif length < best_length:
+                best_leaves = leaves
+                best_edges = copy.deepcopy(edges)
+                best_length = length
 
-    return float(best_score), best_leaves, best_edges, best_length
+    return best_leaves, best_edges, best_length
 
 
 def full_grasp(graph, iterations, seed, ls_iterations):
@@ -43,10 +46,10 @@ def full_grasp(graph, iterations, seed, ls_iterations):
     :param iterations: the number of iterations that you want to perform
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
     :param ls_iterations: the number of iterations that you want to perform for the local search phase
-    :return: the best score, the edges that form the best solution path found,
+    :return: the edges that form the best solution path found,
              the best number of leaves and the total length of the best path
     """
-    best_score = float("inf")
+
     best_leaves = float("inf")
     best_edges = []
     best_length = float("inf")
@@ -54,17 +57,21 @@ def full_grasp(graph, iterations, seed, ls_iterations):
     for i in range(iterations):
 
         # Solution ← Greedy Randomized Construction(Seed);
-        c_score, c_leaves, c_edges, c_length = greedy_randomized.run_algorithm(graph, seed)
+        c_leaves, c_edges, c_length = greedy_randomized.run_algorithm(graph, seed)
 
         # Solution ← Local Search(Solution);
-        ls_score, ls_leaves, ls_edges, ls_length = local_search.run_algorithm(graph, c_score, c_leaves,
-                                                                              c_edges, c_length, ls_iterations)
+        ls_leaves, ls_edges, ls_length = local_search.run_algorithm(graph, c_leaves, c_edges,
+                                                                    c_length, ls_iterations)
 
         # Update the best solution if an improvement is found
-        if float(ls_score) < best_score:
-            best_score = float(ls_score)
-            best_leaves = ls_leaves
-            best_edges = copy.deepcopy(ls_edges)
-            best_length = ls_length
+        if ls_leaves <= best_leaves:
+            if ls_leaves < best_leaves:
+                best_leaves = ls_leaves
+                best_edges = copy.deepcopy(ls_edges)
+                best_length = ls_length
+            elif ls_length < best_length:
+                best_leaves = ls_leaves
+                best_edges = copy.deepcopy(ls_edges)
+                best_length = ls_length
 
-    return float(best_score), best_leaves, best_edges, best_length
+    return best_leaves, best_edges, best_length

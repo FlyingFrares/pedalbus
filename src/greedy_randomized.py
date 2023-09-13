@@ -55,7 +55,7 @@ def run_algorithm(graph, seed):
     It executes an iteration of the greedy randomized algorithm
     :param graph: the graph on which you want to apply the algorithm
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
-    :return: the score, the edges that form the solution path, the number of leaves and the total length of the path
+    :return: the edges that form the solution path, the number of leaves and the total length of the path
     """
 
     previous = ROOT
@@ -80,6 +80,5 @@ def run_algorithm(graph, seed):
             leaves_counter += 1
 
     total_length += curr_path_length
-    score = str(leaves_counter) + "." + str(total_length).replace(".", "")
 
-    return float(score), leaves_counter, edges, total_length
+    return leaves_counter, edges, total_length
