@@ -21,7 +21,7 @@ def rcl(seed, graph, previous_node, not_visited, path_length):
     curr_min_path_length = float("inf")
 
     # distance between the previous_node and the node that is closer to it among the not visited ones
-    curr_prev_node_min_distance = float("inf")
+    best_node_found = float("inf")
 
     candidate_list = []  # nodes that you can add to the current path
     for node_x in not_visited:
@@ -32,7 +32,7 @@ def rcl(seed, graph, previous_node, not_visited, path_length):
             candidate_list.append(node_x)
             if new_path_length < curr_min_path_length:
                 curr_min_path_length = new_path_length
-                curr_prev_node_min_distance = graph.get_distance(previous_node, node_x)
+                best_node_found = graph.get_distance(previous_node, node_x)
 
     if candidate_list:  # if there are nodes that you can add to the current path
         restricted_candidate_list = []
@@ -40,7 +40,7 @@ def rcl(seed, graph, previous_node, not_visited, path_length):
         # is <= than curr_prev_node_min_distance * seed
         for node_x in candidate_list:
             new_node_distance = graph.get_distance(previous_node, node_x)
-            if new_node_distance <= curr_prev_node_min_distance * seed:
+            if new_node_distance <= best_node_found * seed:
                 restricted_candidate_list.append(node_x)
 
         # I select one node randomly among the best ones
