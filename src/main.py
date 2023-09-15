@@ -8,7 +8,7 @@ import grasp
 
 
 # Configuration parameters
-TEST_FILE = "pedalbus_100"  # file su cui eseguire il test
+TEST_FILE = "pedalbus_10"  # file su cui eseguire il test
 SEED_FOR_SMALL_INSTANCES = 2  # seed per le istanze con N < 30
 SEED_FOR_BIG_INSTANCES = 1.25  # seed per le istanze con N >= 30
 ITERATIONS = 1000  # numero di iterazioni per GRASP
@@ -40,7 +40,7 @@ else:
 
 print("Almost GRASP")
 start_time = time.time()
-bg_leaves, bg_edges, bg_length = grasp.basic_grasp(gr, iterations, seed)
+bg_leaves, bg_edges, bg_length = grasp.almost_grasp(gr, iterations, seed)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"numero di percorsi: {bg_leaves}, lunghezza: {bg_length}")

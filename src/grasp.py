@@ -10,7 +10,7 @@ import copy
 ROOT = 0
 
 
-def basic_grasp(graph, iterations, seed):
+def almost_grasp(graph, iterations, seed):
     """
     this function executes a GRASP algorithm without the local search phase
     :param graph: the object that contains the information about the graph

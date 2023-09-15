@@ -37,6 +37,7 @@ def run_algorithm(graph):
     :param graph: the graph on which you want to apply the algorithm
     :return: the edges that form the solution path, the number of leaves and the total length of the path
     """
+
     previous = ROOT
     curr_path_length = 0
     nodes_not_visited = set(range(1, graph.n))
@@ -57,5 +58,7 @@ def run_algorithm(graph):
             curr_path_length = 0
             previous = ROOT
             leaves_counter += 1
+
     total_length += curr_path_length
+
     return leaves_counter, edges, total_length

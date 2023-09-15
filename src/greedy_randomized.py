@@ -7,7 +7,7 @@ import random
 ROOT = 0
 
 
-def find_next(seed, graph, previous_node, not_visited, path_length):
+def rcl(seed, graph, previous_node, not_visited, path_length):
     """
     this function finds the next node to add to the path.
     :param seed: the seed that you want to use to perform this iteration. It decides the entity of the randomization
@@ -66,7 +66,7 @@ def run_algorithm(graph, seed):
     total_length = 0
 
     while nodes_not_visited:  # while nodes_not_visited is not empty
-        next_node = find_next(seed, graph, previous, nodes_not_visited, curr_path_length)
+        next_node = rcl(seed, graph, previous, nodes_not_visited, curr_path_length)
         if next_node != -1:  # I found a feasible node that can be added to the current path
             nodes_not_visited.remove(next_node)
             new_edge = [previous, next_node]
