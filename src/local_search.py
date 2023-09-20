@@ -53,33 +53,33 @@ def one_to_one_exchange(current_edges):
     new_paths = arch_to_path(new_edges)
 
     # Scegli casualmente due sottoliste diverse
-    percorso1 = random.choice(new_paths)
-    new_paths.remove(percorso1)
-    percorso2 = random.choice(new_paths)
-    new_paths.remove(percorso2)
+    path1 = random.choice(new_paths)
+    new_paths.remove(path1)
+    path2 = random.choice(new_paths)
+    new_paths.remove(path2)
 
     # Scegli casualmente un nodo da ciascuna sottolista
-    arco1 = random.choice(percorso1)
-    arco2 = random.choice(percorso2)
+    arc1 = random.choice(path1)
+    arc2 = random.choice(path2)
 
-    vertice1 = 0
-    vertice2 = 0
+    vertex1 = 0
+    vertex2 = 0
 
-    while vertice1 == 0:
-        vertice1 = random.choice(arco1)
-    while vertice2 == 0:
-        vertice2 = random.choice(arco2)
+    while vertex1 == 0:
+        vertex1 = random.choice(arc1)
+    while vertex2 == 0:
+        vertex2 = random.choice(arc2)
 
-    # Sostituisci tutte le occorrenze di vertice1 in percorso1 con vertice2
-    for arco in percorso1:
-        if vertice1 in arco:
-            arco[arco.index(vertice1)] = vertice2
-    for arco in percorso2:
-        if vertice2 in arco:
-            arco[arco.index(vertice2)] = vertice1
+    # Sostituisci tutte le occorrenze di vertex1 in path1 con vertex2
+    for arc in path1:
+        if vertex1 in arc:
+            arc[arc.index(vertex1)] = vertex2
+    for arc in path2:
+        if vertex2 in arc:
+            arc[arc.index(vertex2)] = vertex1
 
-    new_paths.append(percorso1)
-    new_paths.append(percorso2)
+    new_paths.append(path1)
+    new_paths.append(path2)
 
     new_edges = path_to_arch(new_paths)
 
